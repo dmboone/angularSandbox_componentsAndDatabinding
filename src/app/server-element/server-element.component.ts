@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewEncapsulation, OnChanges, SimpleChanges, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy, ViewChild, ElementRef} from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation, OnChanges, SimpleChanges, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy, ViewChild, ElementRef, ContentChild} from '@angular/core';
 
 @Component({
   selector: 'app-server-element',
@@ -15,6 +15,8 @@ export class ServerElementComponent implements OnInit, OnChanges, DoCheck, After
 
   @ViewChild('heading', {static: true}) header: ElementRef;
 
+  @ContentChild('contentParagraph', {static: true}) paragraph: ElementRef; // gets access to content stored in another component but then passed on via ngContent
+
   constructor() {
     console.log('constructor called!');
    }
@@ -28,6 +30,8 @@ export class ServerElementComponent implements OnInit, OnChanges, DoCheck, After
 
   ngOnInit(): void {
     console.log('ngOnInit called!');
+    console.log('Text Content: ' + this.header.nativeElement.textContent); // the will be no text content to log here because the view has not been initialized yet
+    console.log('Text Content of paragraph: ' + this.paragraph.nativeElement.textContent); // there will be no text content to log here because the content has not been initialized yet
   }
 
   ngDoCheck(){ // gets called whenever Angular checks for any changes; lots of things (events, promises) can trigger this one
@@ -36,6 +40,7 @@ export class ServerElementComponent implements OnInit, OnChanges, DoCheck, After
 
   ngAfterContentInit(){ // Called after content (ng-content) has been projected into view
     console.log('ngAfterContentInit called!');
+    console.log('Text Content of paragraph: ' + this.paragraph.nativeElement.textContent); // before this hook runs there would be no text content to log
   }
 
   ngAfterContentChecked(){ // Called every time the projected content has been checked
