@@ -2,9 +2,8 @@
     class="panel panel-default">
     <div class="panel-heading">{{ element.name }}</div>
     <div class="panel-body">
-      <p>
-        <strong *ngIf="element.type === 'server'" style="color: red">{{ element.content }}</strong>
-        <em *ngIf="element.type === 'blueprint'">{{ element.content }}</em>
-      </p>
+      <ng-content></ng-content> <!-- this is a directive (even tho it looks like a component) that marks where we want code 
+        in the app component that is between the server-element component 
+        tags to be projected to from the app component-->
     </div>
 </div>

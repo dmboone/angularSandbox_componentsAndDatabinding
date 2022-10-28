@@ -1,4 +1,5 @@
 # FirstApp
+A deeper dive into components and databinding in Angular
 
 Referencing the Udemy course Angular - The Complete Guide (2022 Edition) by Maximilian Schwarzmüller.
 
