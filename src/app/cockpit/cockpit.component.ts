@@ -8,7 +8,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 export class CockpitComponent implements OnInit {
   @Output() serverCreated = new EventEmitter<{serverName: string, serverContent: string}>(); // we have just turned these first two properties into events
   @Output('bpCreated') blueprintCreated = new EventEmitter<{serverName: string, serverContent: string}>(); // added the alias 'bpCreated' so this is how you must now reference the event from the outside
-  newServerName = '';
+  // newServerName = '';
   newServerContent = '';
 
   constructor() { }
@@ -16,16 +16,16 @@ export class CockpitComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onAddServer(){
+  onAddServer(nameInput: HTMLInputElement){
     this.serverCreated.emit({ // emitting our created events from above and passing the data
-      serverName: this.newServerName,
+      serverName: nameInput.value,
       serverContent: this.newServerContent
     })
   }
 
-  onAddBlueprint(){
+  onAddBlueprint(nameInput: HTMLInputElement){
     this.blueprintCreated.emit({ // emitting our created events from above and passing the data
-      serverName: this.newServerName,
+      serverName: nameInput.value,
       serverContent: this.newServerContent
     })
   }
